@@ -1,0 +1,7 @@
+selenium
+pytest
+pytest-xdist
+pytest-html
+python-dotenv
+pytest-ordering
+pytest_html
