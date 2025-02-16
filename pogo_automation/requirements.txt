@@ -5,3 +5,6 @@ pytest-html
 python-dotenv
 pytest-ordering
 pytest_html
+webdriver_manager
+ffmpeg-python
+speechrecognition
