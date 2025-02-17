@@ -8,3 +8,4 @@ pytest_html
 webdriver_manager
 ffmpeg-python
 speechrecognition
+pydub

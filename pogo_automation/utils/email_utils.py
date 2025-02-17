@@ -2,6 +2,7 @@
 import imaplib
 import email
 import re
+import logging
 from dotenv import load_dotenv
 import os
 
@@ -10,16 +11,24 @@ load_dotenv()
 
 # Read variables
 email_user = os.getenv('EMAIL_USER')
-email_pass = os.getenv('EMAIL_PASS')
+email_pass = os.getenv('APP_PASS')
+sender_email = "EA@e.ea.com"
 
-def get_otp_from_email(email_address=email_user, password=email_pass):
-    # Connect to the Gmail IMAP server
+
+logging.basicConfig(level=logging.INFO)
+
+def get_otp_from_email(email_address=email_user, password=email_pass, sender_email=sender_email):
+    logging.info("Connecting to the Gmail IMAP server")
     mail = imaplib.IMAP4_SSL("imap.gmail.com")
     mail.login(email_address, password)
     mail.select("inbox")
 
-    # Search for unread emails
-    status, messages = mail.search(None, '(UNSEEN)')
+    search_criteria = '(UNSEEN)'
+    if sender_email:
+        search_criteria = f'(UNSEEN FROM "{sender_email}")'
+
+    logging.info(f"Searching emails with criteria: {search_criteria}")
+    status, messages = mail.search(None, search_criteria)
     email_ids = messages[0].split()
 
     otp = None
@@ -43,6 +52,10 @@ def get_otp_from_email(email_address=email_user, password=email_pass):
             break
 
     mail.logout()
+    if otp:
+        logging.info(f"OTP fetched: {otp}")
+    else:
+        logging.error("Failed to fetch OTP")
     return otp
 
 def extract_otp(email_body):

@@ -1,4 +1,6 @@
 # pages/registration_page.py
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -17,12 +19,17 @@ class RegistrationPage(BasePage):
     Next_Button = (By.XPATH, "//a[@id='countryDobNextBtn']")
     Basic_Info_Next_Button = (By.XPATH, "//a[@id='basicInfoNextBtn']")
     Accept_UA_Button = (By.XPATH, "//label[@for='readAccept']")
+    OTP_Input = (By.XPATH, "//input[@id='emailVerifyCode']")
+    Sned_OTP_Button = (By.XPATH, "//a[@id='btnSendCode']")
+    ScreenName_Input = (By.XPATH, "//input[@id='screenname']")
+    Nextt_Button = (By.XPATH, "//div[contains(text(),'Next')]")
 
 
-    def register(self, username, email, password):
+    def register(self, email, password, username):
         self.enter_text(*self.EMAIL_INPUT, email)
         self.enter_text(*self.PASSWORD_INPUT, password)
         self.enter_text(*self.EA_ID_BUTTON, username)
+        time.sleep(3)
         self.click(*self.Basic_Info_Next_Button)
 
 
@@ -36,4 +43,10 @@ class RegistrationPage(BasePage):
         self.click(*self.Accept_UA_Button)
         self.click(*self.SUBMIT_BUTTON)
 
+    def enter_otp(self, otp):
+        self.enter_text(*self.OTP_Input, otp)
+        self.click(*self.Sned_OTP_Button)
 
+    def enter_screenname(self, screenname):
+        self.enter_text(*self.ScreenName_Input, screenname)
+        self.click(*self.Nextt_Button)
