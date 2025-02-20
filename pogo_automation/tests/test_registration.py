@@ -40,6 +40,7 @@ def test_registration(driver):
     driver.save_screenshot(SS_Path + "ua_accepted.png")
 
     # Enter OTP
+    time.sleep(20)
     otp = get_otp_from_email()
     assert otp is not None, "Failed to fetch OTP from email"
     logging.info("Fetched OTP from email")
