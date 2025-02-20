@@ -2,7 +2,7 @@
 import random
 import string
 
-def generate_unique_id(length=12):
+def generate_unique_id(length=15):
     return ''.join(random.choices(string.digits, k=length))
 
 def generate_screenname(prefix_length=1, id_length=16):
