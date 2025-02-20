@@ -11,3 +11,4 @@ EMAIL = os.getenv('EMAIL_USER')
 PASSWORD = os.getenv('EMAIL_PASS')
 APP_PASSWORD = os.getenv('APP_PASS')
 SS_Path = "pogo_automation/tests/Screenshots/"
+Reg_Email = os.getenv('REG_EMAIL_USER')

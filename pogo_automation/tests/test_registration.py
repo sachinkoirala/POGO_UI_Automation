@@ -8,7 +8,7 @@ from pogo_automation.pages.registration_page import RegistrationPage
 from pogo_automation.pages.home_page import HomePage
 from pogo_automation.utils.email_utils import get_otp_from_email
 from pogo_automation.utils.helpers import generate_unique_id, generate_screenname
-from pogo_automation.utils.config import EMAIL, PASSWORD, SS_Path
+from pogo_automation.utils.config import EMAIL, PASSWORD, SS_Path, Reg_Email
 from pogo_automation.utils.recaptcha_solver import solve_recaptcha
 
 logging.basicConfig(level=logging.INFO)
@@ -31,7 +31,7 @@ def test_registration(driver):
 
     # Fill out the registration form
     username = generate_unique_id()
-    registration_page.register(EMAIL, PASSWORD, username)
+    registration_page.register(Reg_Email, PASSWORD, username)
     driver.save_screenshot(SS_Path + "form_filled.png")
 
     # Accept UA
