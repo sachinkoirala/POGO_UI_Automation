@@ -35,7 +35,7 @@ def test_registration(driver):
     driver.save_screenshot(SS_Path + "form_filled.png")
 
     # Accept UA
-    time.sleep(5)
+    time.sleep(60)
     registration_page.accept_ua()
     driver.save_screenshot(SS_Path + "ua_accepted.png")
 

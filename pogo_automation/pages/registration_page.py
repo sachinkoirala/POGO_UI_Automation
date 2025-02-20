@@ -13,6 +13,7 @@ class RegistrationPage(BasePage):
     PASSWORD_INPUT = (By.XPATH, "//input[@id='password']")
     EA_ID_BUTTON = (By.XPATH, "//input[@id='originId']")
     SUBMIT_BUTTON = (By.XPATH, "//button[@id='submitBtn']")
+    Reg_Submit_Button = (By.XPATH, "//a[@id='submitBtn']")
     DOB_MONTH = (By.XPATH, "//select[@id='clientreg_dobmonth-selctrl']")
     DOB_DAY = (By.XPATH,"//select[@id='clientreg_dobday-selctrl']")
     DOB_YEAR = (By.XPATH,"//select[@id='clientreg_dobyear-selctrl']")
@@ -41,7 +42,7 @@ class RegistrationPage(BasePage):
 
     def accept_ua(self):
         self.click(*self.Accept_UA_Button)
-        self.click(*self.SUBMIT_BUTTON)
+        self.click(*self.Reg_Submit_Button)
 
     def enter_otp(self, otp):
         self.enter_text(*self.OTP_Input, otp)
